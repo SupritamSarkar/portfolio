@@ -250,7 +250,7 @@ const AnimatedSection = ({ children, id }) => {
             `}</style>
 
       {/* Navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-sm border-b border-purple-900/20">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-sm border-b-2 border-purple-900/40 shadow-lg shadow-purple-900/30">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
           <a
@@ -286,7 +286,7 @@ const AnimatedSection = ({ children, id }) => {
         </div>
       </header>
 
-      <main className="container mx-auto pt-24 relative">
+      <main className="container mx-auto pt-6 relative">
         {/* Hero Section */}
         <AnimatedSection
           id="home"
@@ -449,7 +449,7 @@ const AnimatedSection = ({ children, id }) => {
 
         {/* Skills Section */}
         <AnimatedSection id="skills">
-          <h2 className="text-5xl font-bold text-center purple-gradient-text mt-6 mb-4">
+          <h2 className="text-5xl font-bold text-center purple-gradient-text">
             Skills & Technologies
           </h2>
           <p className="text-center text-lg text-gray-400 mb-18 max-w-2xl mx-auto">
@@ -486,7 +486,7 @@ const AnimatedSection = ({ children, id }) => {
 
         {/* Projects Section */}
         <AnimatedSection id="projects">
-          <h2 className="text-5xl font-bold text-center purple-gradient-text mt-4 mb-4">
+          <h2 className="text-5xl font-bold text-center purple-gradient-text">
             Featured Projects
           </h2>
           <p className="text-center text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
@@ -513,7 +513,7 @@ const AnimatedSection = ({ children, id }) => {
         {/* Achievements Section */}
         <AnimatedSection
           id="achievements"
-          className="py-20 bg-gradient-to-br from-background to-primary/5"
+          className="bg-gradient-to-br from-background to-primary/5"
         >
           <div className="container mx-auto px-6">
             <div className="max-w-6xl mx-auto">
@@ -625,7 +625,7 @@ const AnimatedSection = ({ children, id }) => {
         </AnimatedSection>
 
         <AnimatedSection id="contact">
-          <h2 className="text-5xl font-bold text-center purple-gradient-text mb-4">
+          <h2 className="text-5xl font-bold text-center purple-gradient-text">
             Get In Touch
           </h2>
           <p className="text-center text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
