@@ -10,7 +10,6 @@ import {
   Cpu,
   Database,
   Wrench,
-  ExternalLink,
   Menu,
   X,
   Phone,
@@ -23,13 +22,23 @@ import {
 
 // Main App Component
 const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState("Home");
+
+
+;
+
 
   const handleNavClick = (item) => {
-    setActiveNav(item);
-    setIsMenuOpen(false);
+    scrollToSection(item);
   };
+
+    const navLinks = [
+    "Home",
+    "About",
+    "Skills",
+    "Projects",
+    "Achievements",
+    "Contact",
+  ];
 
   const achievements = [
     {
@@ -68,7 +77,7 @@ const App = () => {
 
   const stats = [
     { number: "8.57", label: "CGPA", description: "Academic Excellence" },
-    { number: "200+", label: "DSA Problems", description: "Problem Solving" },
+    { number: "250+", label: "DSA Problems", description: "Problem Solving" },
     {
       number: "3+",
       label: "Major Projects",
@@ -90,12 +99,12 @@ const App = () => {
     ],
 
     skills: {
-      Languages: { Java: "85%", JavaScript: "90%", C: "70%" },
+      Languages: { Java: "85%", JavaScript: "75%", C: "70%" },
       Frontend: { React: "85%", "HTML/CSS": "90%", "Tailwind CSS": "85%" },
       Backend: { "Node.js": "80%", Express: "80%", MongoDB: "75%" },
       "Tools & Platforms": {
-        "Git/GitHub": "85%",
-        "Netlify/Render": "80%",
+        "Git/GitHub": "80%",
+        "Netlify/Render": "85%",
         "VS Code": "90%",
       },
       technologies: [
@@ -190,14 +199,6 @@ const App = () => {
     },
   };
 
-  const navLinks = [
-    "Home",
-    "About",
-    "Skills",
-    "Projects",
-    "Achievements",
-    "Contact",
-  ];
 
   // Smooth scroll to section by id
   const scrollToSection = (id) => {
@@ -206,6 +207,34 @@ const App = () => {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // Reusable component for section animations
+// Reusable component for section animations
+const AnimatedSection = ({ children, id }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.2 }); // 'once' removed
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
+
+  return (
+    <motion.section
+      id={id}
+      ref={ref}
+      className="py-32 px-6 relative z-10"
+      initial={{ opacity: 0, y: 50 }}
+      animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8 }}
+       viewport={{ once: true, amount: 0.2 }}
+    >
+      {children}
+    </motion.section>
+  );
+};
 
   return (
     <div className="bg-[#0A0A0A] text-gray-300 font-sans antialiased relative">
@@ -239,11 +268,7 @@ const App = () => {
                 key={link}
                 href={`#${link.toLowerCase()}`}
                 onClick={() => handleNavClick(link)}
-                className={`text-gray-300 hover:text-purple-400 transition-colors duration-300 font-medium relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-purple-500 after:transition-all after:duration-300 ${
-                  activeNav === link
-                    ? "text-purple-400 after:w-full"
-                    : "after:w-0"
-                }`}
+                className="text-gray-300 hover:text-purple-400 transition-colors duration-300 font-medium relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-purple-500 after:transition-all after:duration-300"
               >
                 {link}
               </a>
@@ -261,9 +286,9 @@ const App = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-6 pt-24 relative">
+      <main className="container mx-auto pt-24 relative">
         {/* Hero Section */}
-        <section
+        <AnimatedSection
           id="home"
           className="min-h-screen flex items-center justify-start relative overflow-hidden px-6"
         >
@@ -286,7 +311,7 @@ const App = () => {
           <div className="relative z-10 max-w-4xl">
             <div className="text-left">
               {/* Greeting */}
-              <p className="text-accent mb-4 animate-fade-up text-lg">
+              <p className="text-accent mb-4 animate-fade-up animation-delay-300 text-lg">
                 Hi there! I'm
               </p>
 
@@ -343,17 +368,17 @@ const App = () => {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* About Section */}
-        <section id="about" className="py-20 relative">
+        <AnimatedSection id="about">
           <div className="container mx-auto px-6">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="text-4xl bg-gradient-to-br from-purple-600 to-blue-600/80 text-transparent bg-clip-text md:text-5xl font-bold mb-6">
                   <span className="gradient-text">About Me</span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                   Passionate developer with a strong foundation in computer
                   science and a love for creating innovative solutions
                 </p>
@@ -361,32 +386,37 @@ const App = () => {
 
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left: Personal Info */}
-                <div className="space-y-6">
-                  <div className="glass-card p-8 rounded-2xl">
-                    <h3 className="text-2xl text-purple-600 font-bold mb-6 gradient-text">
+                <div className="space-y-6 w-full">
+                  <div className="glass-card p-6 sm:p-8 rounded-2xl">
+                    <h3 className="text-2xl sm:text-2xl text-purple-600 font-bold mb-4 sm:mb-6 gradient-text">
                       Personal Information
                     </h3>
-                    <div className="space-y-4 text-gray-400">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Location:</span>
+                    <div className="space-y-4 text-gray-400 text-sm sm:text-base">
+                      {/* Each row */}
+                      <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-0">
+                        <span className="text-muted-foreground text-lg font-semibold">Location:</span>
                         <span>Kolkata, West Bengal</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">
+
+                      <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-0">
+                        <span className="text-muted-foreground text-lg font-semibold">
                           Education:
                         </span>
                         <span>IIEST Shibpur</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Degree:</span>
+
+                      <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-0">
+                        <span className="text-muted-foreground text-lg font-semibold">Degree:</span>
                         <span>B.Tech Information Technology</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Year:</span>
+
+                      <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-0">
+                        <span className="text-muted-foreground text-lg font-semibold">Year:</span>
                         <span>2023 - 2027</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">CGPA:</span>
+
+                      <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-0">
+                        <span className="text-muted-foreground text-lg font-semibold">CGPA:</span>
                         <span className="gradient-text font-semibold">
                           8.57
                         </span>
@@ -403,32 +433,19 @@ const App = () => {
                     </h3>
                     <div className="space-y-4 text-gray-400">
                       <p>
-                        I'm a dedicated Computer Science student at the Indian
-                        Institute of Engineering Science and Technology Shibpur,
-                        currently maintaining a CGPA of 8.57. My journey in
-                        technology began with curiosity and has evolved into a
-                        passion for full-stack development.
+                        I'm a Computer Science student at IIEST Shibpur with a CGPA of 8.57, passionate about full-stack development. I specialize in React, Node.js, and MongoDB, and have built projects ranging from expense trackers to social media platforms.
                       </p>
                       <p>
-                        With expertise in modern web technologies including
-                        React, Node.js, and MongoDB, I enjoy creating seamless
-                        user experiences and robust backend solutions. I've
-                        successfully completed multiple projects ranging from
-                        financial trackers to social media platforms.
+                        Beyond development, I enjoy solving algorithmic problems and continuously exploring new technologies. I've solved over 250 DSA problems and earned several certifications and achievements along the way.
                       </p>
-                      <p>
-                        Beyond coding, I'm constantly learning new technologies
-                        and solving algorithmic problems. I've solved over 200
-                        DSA problems and earned recognition through various
-                        certifications and achievements.
-                      </p>
+                      
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Skills Section */}
         <AnimatedSection id="skills">
@@ -494,7 +511,7 @@ const App = () => {
         </AnimatedSection>
 
         {/* Achievements Section */}
-        <section
+        <AnimatedSection
           id="achievements"
           className="py-20 bg-gradient-to-br from-background to-primary/5"
         >
@@ -605,7 +622,7 @@ const App = () => {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         <AnimatedSection id="contact">
           <h2 className="text-5xl font-bold text-center purple-gradient-text mb-4">
@@ -638,23 +655,6 @@ const App = () => {
   );
 };
 
-// Reusable component for section animations
-const AnimatedSection = ({ children, id }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-  return (
-    <motion.section
-      id={id}
-      ref={ref}
-      className="py-20"
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8 }}
-    >
-      {children}
-    </motion.section>
-  );
-};
 
 // Skill Category Component
 const SkillCategory = ({ title, skills }) => (
@@ -737,7 +737,7 @@ const ProjectCard = ({ project }) => (
           rel="noopener noreferrer"
           className="flex-1 text-center bg-gray-700/50 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-600/70 transition-colors duration-300 flex items-center justify-center gap-2"
         >
-          <ExternalLink size={18} /> Live Demo
+          <Code size={18} /> Live Demo
         </a>
       </div>
     </div>
@@ -746,6 +746,7 @@ const ProjectCard = ({ project }) => (
 
 // Achievement Card Component
 const AchievementCard = ({ cert }) => (
+  <AnimatedSection >
   <div className="bg-[#111111] p-6 rounded-2xl border border-purple-900/30 card-glow flex gap-6 items-start">
     <div className="text-purple-400 mt-1">{cert.icon}</div>
     <div>
@@ -759,6 +760,7 @@ const AchievementCard = ({ cert }) => (
       </span>
     </div>
   </div>
+  </AnimatedSection>
 );
 
 // Contact Info Cards
@@ -936,34 +938,34 @@ const Footer = () => {
               <h4 className="font-semibold mb-4">Connect</h4>
               <div className="flex space-x-4">
                 <a
-                  href="https://github.com/supritam"
+                  href="https://github.com/SupritamSarkar"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-primary p-3 rounded-xl hover:glow-primary transition-all duration-300"
                 >
-                  <Github className="w-5 h-5 text-white" />
+                  <Github className="w-8 h-8 text-white" />
                 </a>
                 <a
-                  href="https://linkedin.com/in/supritam"
+                  href="https://www.linkedin.com/in/supritam-sarkar-327778322"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-secondary p-3 rounded-xl hover:glow-accent transition-all duration-300"
                 >
-                  <Linkedin className="w-5 h-5 text-white" />
+                  <Linkedin className="w-8 h-8 text-white" />
                 </a>
                 <a
-                  href="mailto:supritamsarkar181@gmail.com"
+                  href="mailto:supritamsarkar481@gmail.com"
                   className="bg-gradient-accent p-3 rounded-xl hover:glow-accent transition-all duration-300"
                 >
-                  <Mail className="w-5 h-5 text-white" />
+                  <Mail className="w-8 h-8 text-white" />
                 </a>
                 <a
-                  href="https://leetcode.com/supritam"
+                  href="https://leetcode.com/u/supritam_sarkar_0808"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-primary p-3 rounded-xl hover:glow-primary transition-all duration-300"
                 >
-                  <ExternalLink className="w-5 h-5 text-white" />
+                  <Code className="w-8 h-8 text-white" />
                 </a>
               </div>
             </div>
@@ -971,7 +973,8 @@ const Footer = () => {
 
           <div className="mt-12 pt-8 border-t border-border/50 text-center">
             <p className="text-muted-foreground">
-              © {currentYear} Supritam Sarkar. Crafted with ❤️ By Supritam Sarkar
+              © {currentYear} Supritam Sarkar. Crafted with ❤️ By Supritam
+              Sarkar
             </p>
           </div>
         </div>
