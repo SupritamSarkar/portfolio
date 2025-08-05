@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import {motion, useInView } from "framer-motion";
 import {
   Mail,
   Linkedin,
@@ -66,7 +66,7 @@ const App = () => {
       date: "2024",
     },
     {
-      title: "200+ DSA Problems Solved",
+      title: "300+ DSA Problems Solved",
       description:
         "Solved over 200 Data Structures and Algorithms problems on LeetCode and GeeksforGeeks using Java",
       icon: Star,
@@ -77,7 +77,7 @@ const App = () => {
 
   const stats = [
     { number: "8.57", label: "CGPA", description: "Academic Excellence" },
-    { number: "250+", label: "DSA Problems", description: "Problem Solving" },
+    { number: "300+", label: "DSA Problems", description: "Problem Solving" },
     {
       number: "3+",
       label: "Major Projects",
@@ -94,12 +94,12 @@ const App = () => {
       "Currently pursuing B.Tech in Information Technology at IIEST Shibpur. Passionate about creating innovative web solutions with modern technologies and solving complex problems through code.",
     stats: [
       { label: "CGPA", value: "8.57" },
-      { label: "DSA Problems", value: "200+" },
+      { label: "DSA Problems", value: "300+" },
       { label: "Major Projects", value: "3+" },
     ],
 
     skills: {
-      Languages: { Java: "85%", JavaScript: "75%", C: "70%" },
+      Languages: { Java: "85%", JavaScript: "70%", C: "75%" },
       Frontend: { React: "85%", "HTML/CSS": "90%", "Tailwind CSS": "85%" },
       Backend: { "Node.js": "80%", Express: "80%", MongoDB: "75%" },
       "Tools & Platforms": {
@@ -108,7 +108,7 @@ const App = () => {
         "VS Code": "90%",
       },
       technologies: [
-        "JavaScript",
+        "Java",
         "React",
         "Node.js",
         "MongoDB",
@@ -118,7 +118,7 @@ const App = () => {
         "GitHub",
         "HTML5",
         "CSS3",
-        "Java",
+        "JavaScript",
         "C",
         "Netlify",
         "VS Code",
@@ -358,7 +358,7 @@ const AnimatedSection = ({ children, id }) => {
                   <div className="text-accent">8.57</div>
                 </div>
                 <div className="text-left">
-                  <div className="text-3xl font-bold gradient-text">250+</div>
+                  <div className="text-3xl font-bold gradient-text">300+</div>
                   <div className="text-accent">DSA Problems</div>
                 </div>
                 <div className="text-left">
