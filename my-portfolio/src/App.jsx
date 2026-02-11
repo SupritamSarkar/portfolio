@@ -31,7 +31,7 @@ const App = () => {
       tech: ['Next.js', 'FastAPI', 'PostgreSQL', 'Supabase'],
       live: 'https://papercode.in',
       github: 'https://github.com/cneuralnetwork/papercode',
-      image: '/src/assets/papercode.png',
+      image: '/assets/papercode.png',
     },
     {
       title: 'Expenzy',
@@ -40,7 +40,7 @@ const App = () => {
       tech: ['React', 'Node.js', 'MongoDB', 'Gemini API'],
       live: 'https://expenzy.netlify.app',
       github: 'https://github.com/SupritamSarkar/expense-tracker',
-      image: '/src/assets/expenzy.png',
+      image: '/assets/expenzy.png',
     },
         {
       title: 'Inspix',
@@ -49,7 +49,7 @@ const App = () => {
       tech: ['Node.js', 'Express', 'MongoDB', 'EJS'],
       live: 'https://inspix.netlify.app',
       github: 'https://github.com/SupritamSarkar/Inspix',
-      image: '/src/assets/inspix.png',
+      image: '/assets/inspix.png',
     },
     
     {
@@ -58,7 +58,7 @@ const App = () => {
       date: '2025',
       tech: ['React', 'Node.js', 'MongoDB'],
       live: 'https://newapply.netlify.app/',
-      image: '/src/assets/newapply.png',
+      image: '/assets/newapply.png',
     },
     {
       title: 'GateQuest',
@@ -66,7 +66,7 @@ const App = () => {
       date: '2025',
       tech: ['React', 'Node.js'],
       live: 'https://gatequest.netlify.app/',
-      image: '/src/assets/gatequest.png',
+      image: '/assets/gatequest.png',
     },
 
 

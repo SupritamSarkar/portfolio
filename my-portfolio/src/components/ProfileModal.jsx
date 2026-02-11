@@ -31,8 +31,8 @@ const ProfileModal = ({ isOpen, onClose }) => {
 
         {/* Header with avatar and basic info */}
         <div className="flex items-start gap-5 mb-8">
-          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg flex-shrink-0">
-            <img src="/src/assets/profile.png" alt="" />
+          <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 shadow-lg">
+            <img src="/assets/profile.png" alt="Supritam Sarkar" className="w-full h-full object-cover" />
           </div>
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-black leading-tight">Supritam Sarkar</h2>
