@@ -31,7 +31,7 @@ const App = () => {
       tech: ['Next.js', 'FastAPI', 'PostgreSQL', 'Supabase'],
       live: 'https://papercode.in',
       github: 'https://github.com/cneuralnetwork/papercode',
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      image: '/src/assets/papercode.png',
     },
     {
       title: 'Expenzy',
@@ -40,15 +40,25 @@ const App = () => {
       tech: ['React', 'Node.js', 'MongoDB', 'Gemini API'],
       live: 'https://expenzy.netlify.app',
       github: 'https://github.com/SupritamSarkar/expense-tracker',
-      gradient: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+      image: '/src/assets/expenzy.png',
     },
+        {
+      title: 'Inspix',
+      description: 'Full-featured Wallpaper application with auth & uploads',
+      date: 'March 2025',
+      tech: ['Node.js', 'Express', 'MongoDB', 'EJS'],
+      live: 'https://inspix.netlify.app',
+      github: 'https://github.com/SupritamSarkar/Inspix',
+      image: '/src/assets/inspix.png',
+    },
+    
     {
       title: 'NewApply',
       description: 'Job application tracking and management system',
       date: '2025',
       tech: ['React', 'Node.js', 'MongoDB'],
       live: 'https://newapply.netlify.app/',
-      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+      image: '/src/assets/newapply.png',
     },
     {
       title: 'GateQuest',
@@ -56,25 +66,10 @@ const App = () => {
       date: '2025',
       tech: ['React', 'Node.js'],
       live: 'https://gatequest.netlify.app/',
-      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+      image: '/src/assets/gatequest.png',
     },
-    {
-      title: 'Inspix',
-      description: 'Full-featured Wallpaper application with auth & uploads',
-      date: 'March 2025',
-      tech: ['Node.js', 'Express', 'MongoDB', 'EJS'],
-      live: 'https://inspix.netlify.app',
-      github: 'https://github.com/SupritamSarkar/Inspix',
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    },
-    {
-      title: 'AI Job Board',
-      description: 'AI-powered job search and matching platform',
-      date: '2025',
-      tech: ['React', 'AI/ML', 'Node.js'],
-      live: 'https://ai-job-board-henna.vercel.app',
-      gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-    },
+
+
   ];
 
   const socialLinks = [

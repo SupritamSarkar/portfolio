@@ -2,19 +2,6 @@ import React from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 
 const ProjectCard = ({ project }) => {
-  const gradients = [
-    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-    'linear-gradient(135deg, #1DB954 0%, #191414 100%)',
-    'linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%)',
-  ];
-
-  const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
-
   return (
     <div className="project-card block">
       <a 
@@ -24,12 +11,21 @@ const ProjectCard = ({ project }) => {
         className="block"
       >
         <div 
-          className="project-card-image flex items-center justify-center"
-          style={{ background: project.gradient || randomGradient }}
+          className="project-card-image overflow-hidden"
         >
-          <span className="text-white text-5xl font-bold opacity-30">
-            {project.title.charAt(0)}
-          </span>
+          {project.image ? (
+            <img 
+              src={project.image} 
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+              <span className="text-gray-400 text-5xl font-bold opacity-30">
+                {project.title.charAt(0)}
+              </span>
+            </div>
+          )}
         </div>
         <div className="project-card-content">
           <h3 className="project-card-title">
